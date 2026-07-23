@@ -45,85 +45,45 @@ export type Headers = Record<string, string>;
 // ---------------------------------------------------------------------------
 
 /**
- * TODO: Analiza una URL y devuelve sus partes.
- *
- * Pista: usa el constructor `new URL(url)` (viene con Node, no requiere
- * ninguna librería). Sus propiedades te dan todo lo que necesitas:
- *
- *   const u = new URL("https://api.ejemplo.com/users?id=1");
- *   u.protocol // → "https:"
- *   u.host     // → "api.ejemplo.com"
- *   u.pathname // → "/users"
- *   u.search   // → "?id=1"
- *   u.searchParams.entries() // → iterador [["id","1"]]
- *
- * Si la URL no es válida, `new URL()` lanza TypeError — no hace falta
- * que lo manejes aparte, se propagará solo.
+ * Analiza una URL y devuelve sus partes.
  */
 export function parseUrl(url: string): UrlParts {
-  // TODO: tu implementación aquí
-  throw new Error("Not implemented");
+  const u = new URL(url);
+
+  return {
+    protocol: u.protocol,
+    host: u.host,
+    pathname: u.pathname,
+    search: u.search,
+    query: Array.from(u.searchParams.entries()),
+  };
 }
 
 /**
  * TODO: Clasifica un código de estado HTTP en su categoría.
- *
- * Reglas:
- *   100–199 → "1xx Informativo"
- *   200–299 → "2xx Éxito"
- *   300–399 → "3xx Redirección"
- *   400–499 → "4xx Error del cliente"
- *   500–599 → "5xx Error del servidor"
- *   otro    → "Desconocido"
- *
- * Pista: un único `if / else if` con comparaciones de rangos basta.
  */
 export function classifyStatus(code: number): StatusCategory {
-  // TODO: tu implementación aquí
+  // TODO: tu implementación aquí (Parte 2)
   throw new Error("Not implemented");
 }
 
 /**
- * TODO: Parsea un texto con líneas de cabeceras HTTP al formato
- * `Record<string, string>`. El separador entre nombre y valor es ":".
- *
- * Reglas:
- *   - Cada línea no vacía debe tener formato "Nombre: valor".
- *   - Ignora líneas vacías o que no contengan ":".
- *   - No tienes que normalizar mayúsculas/minúsculas del nombre.
- *
- * Ejemplo:
- *   parseHeaders("Content-Type: application/json\nAuthorization: Bearer abc")
- *   → { "Content-Type": "application/json", "Authorization": "Bearer abc" }
- *
- * Pista: `text.split("\n")` te da las líneas; `String.split(":")` te separa
- * nombre y valor. Recuerda `.trim()` para quitar espacios sobrantes.
+ * TODO: Parsea un texto con líneas de cabeceras HTTP al formato `Record<string, string>`.
  */
 export function parseHeaders(text: string): Headers {
-  // TODO: tu implementación aquí
+  // TODO: tu implementación aquí (Parte 3)
   throw new Error("Not implemented");
 }
 
 /**
  * TODO: Combina las funciones anteriores en un resumen legible.
- *
- * El formato exacto lo decides tú (los tests solo verifican que el string
- * no esté vacío y que contenga la URL y el código). Un ejemplo:
- *
- *   Resumen de la petición
- *   ──────────────────────
- *   URL:     https://api.ejemplo.com/users
- *   Status:  200 (2xx Éxito)
- *   Headers:
- *     • Content-Type: application/json
- *     • Authorization: Bearer abc
  */
 export function summarizeRequest(
   url: string,
   status: number,
   headersText: string,
 ): string {
-  // TODO: tu implementación aquí
+  // TODO: tu implementación aquí (Parte 3)
   throw new Error("Not implemented");
 }
 
