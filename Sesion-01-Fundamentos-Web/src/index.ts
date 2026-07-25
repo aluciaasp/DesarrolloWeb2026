@@ -85,20 +85,39 @@ export function classifyStatus(code: number): StatusCategory {
  * TODO: Parsea un texto con líneas de cabeceras HTTP al formato `Record<string, string>`.
  */
 export function parseHeaders(text: string): Headers {
-  // TODO: tu implementación aquí (Parte 3)
-  throw new Error("Not implemented");
+  const headers: Headers = {};
+  const lines = text.split('\n');
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    if (!trimmedLine || !trimmedLine.includes(':')) {
+      continue;
+    }
+
+    const colonIndex = trimmedLine.indexOf(':');
+    const key = trimmedLine.substring(0, colonIndex).trim();
+    const value = trimmedLine.substring(colonIndex + 1).trim();
+
+    if (key) {
+      headers[key] = value;
+    }
+  }
+
+  return headers;
 }
 
-/**
- * TODO: Combina las funciones anteriores en un resumen legible.
- */
 export function summarizeRequest(
   url: string,
   status: number,
-  headersText: string,
+  headersText: string
 ): string {
-  // TODO: tu implementación aquí (Parte 3)
-  throw new Error("Not implemented");
+  const parsedUrl = parseUrl(url);
+  const statusCategory = classifyStatus(status);
+  const headers = parseHeaders(headersText);
+
+  const headerCount = Object.keys(headers).length;
+
+  return `URL: ${parsedUrl.protocol}//${parsedUrl.host}${parsedUrl.pathname} | Estado: ${status} (${statusCategory}) | Encabezados: ${headerCount}`;
 }
 
 // ---------------------------------------------------------------------------
