@@ -3,69 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Sitio — Inicio</title>
-  <!-- TODO: agrega meta description, autor, favicon -->
+  <title>Inicio - Portal de Cine</title>
 </head>
 <body>
-
-  <!-- TODO: header con navegacion a las otras 3 paginas -->
   <header>
-    <h1>Mi Sitio</h1>
-    <!-- TODO: <nav> con enlaces a pagina1.html, pagina2.html, pagina3.html -->
+    <h1>Portal de Cine</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="pagina1.html">Películas</a></li>
+        <li><a href="pagina2.html">Contacto</a></li>
+        <li><a href="pagina3.html">Acerca de</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
+    <section>
+      <h2>Bienvenidos a nuestro sitio de películas</h2>
+      <p>Explora las mejores reseñas, estrenos y clásicos del cine.</p>
+      <p>
+        Visita la documentación de <a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN Web Docs</a> para aprender más sobre desarrollo web.
+      </p>
+    </section>
+
     <article>
-      <h2>Bienvenido</h2>
-
-      <!-- TODO: usa <figure> + <figcaption> para una imagen con alt y loading="lazy" -->
-      <img src="https://via.placeholder.com/800x400"
-           alt="Imagen de bienvenida"
-           width="800" height="400"
-           loading="lazy">
-
-      <p>Parrafo de introduccion. Lorem ipsum dolor sit amet.</p>
-
-      <!-- TODO: usa <dialog> + un boton con command/commandfor (Invoker Commands API) -->
-      <dialog id="bienvenida">
-        <h3>Hola!</h3>
-        <p>Esto es un dialog modal nativo.</p>
-        <form method="dialog">
-          <button>Cerrar</button>
-        </form>
-      </dialog>
-      <button command="show-modal" commandfor="bienvenida">
-        Abrir dialog
-      </button>
-
-      <!-- TODO: usa popover para un menu o tooltip -->
-      <button popovertarget="menu-ayuda">?</button>
-      <div id="menu-ayuda" popover>
-        <h4>Ayuda</h4>
-        <p>Contenido del popover...</p>
-      </div>
-
-      <!-- TODO: formulario con al menos 3 inputs (text, email, etc.) -->
-      <form action="#" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input id="nombre" type="text" name="nombre" required minlength="3">
-
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email" required>
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
+      <h3>Estreno de la Semana</h3>
+      <p>Descubre el análisis completo sobre los lanzamientos más recientes de la industria.</p>
     </article>
-
-    <!-- TODO: usa <aside> para contenido lateral -->
   </main>
 
   <footer>
-    <p>&copy; 2026 Mi Sitio — Universidad Mariano Galvez</p>
+    <p>&copy; 2026 Portal de Cine - Desarrollado para la UMG</p>
   </footer>
-
 </body>
 </html>
