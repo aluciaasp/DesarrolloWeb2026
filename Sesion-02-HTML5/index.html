@@ -28,6 +28,21 @@
         Visita la documentación de <a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN Web Docs</a> para aprender más sobre desarrollo web.
       </p>
     </section>
+    
+      <section>
+      <h3>Novedades y Anuncios</h3>
+      <button popovertarget="mi-popover">Ver aviso rápido</button>
+      <div id="mi-popover" popover>
+        <p>¡Bienvenido al portal de cine! Revisa nuestro catálogo semanal.</p>
+      </div>
+      <br><br>
+      <button commandfor="mi-dialogo" command="show-modal">Abrir cuadro de diálogo</button>
+
+      <dialog id="mi-dialogo">
+        <p>Este es un cuadro de diálogo nativo de HTML5.</p>
+        <button> commandfor="mi-diagolo" <command> = "close">Cerrar</button>
+      </dialog>
+    </section>
 
     <article>
       <h3>Estreno de la Semana</h3>

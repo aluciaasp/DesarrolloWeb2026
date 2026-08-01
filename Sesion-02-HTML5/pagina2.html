@@ -21,7 +21,27 @@
   <main>
     <section>
       <h2>Ponte en contacto</h2>
-      <p>En los siguientes días agregaremos el formulario interactivo.</p>
+<p>Envíanos tus sugerencias o dudas sobre el catálogo de películas.</p>
+
+     
+      <form action="#" method="post">
+        <p>
+          <label for="nombre">Nombre:</label><br>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        </p>
+        
+        <p>
+          <label for="email">Correo electrónico:</label><br>
+          <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+        </p>
+
+        <p>
+          <label for="mensaje">Mensaje:</label><br>
+          <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe tu mensaje aquí..."></textarea>
+        </p>
+
+        <button type="submit">Enviar mensaje</button>
+      </form>    
     </section>
   </main>
 
