@@ -16,12 +16,72 @@ body {
 /* TODO: Galería de productos */
 /* Desktop (>=1024px): 3 columnas usando CSS Grid */
 /* Mobile (<768px): 1 columna con scroll vertical */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
 
 /* TODO: Estilo de cada tarjeta de producto */
 /* - Imagen ocupa el ancho completo de la tarjeta */
 /* - Nombre del producto en negrita */
 /* - Precio destacado */
-/* - Botón "Comprar" estilizado con hover effect */
+/* - Botón "Comprar" estilizado con hover effect */´
+.producto {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.producto-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.producto-info h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.btn-comprar {
+    margin-top: auto;
+    padding: 10px 15px;
+    background-color: #8132ae;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+}
 
 /* TODO: To-Do List */
 /* - Lista sin marcadores (list-style: none) */
