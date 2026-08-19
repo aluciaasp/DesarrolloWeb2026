@@ -11,6 +11,10 @@ const STORAGE_KEY = "tareas-dw-s4";
 // Estado en memoria (lo que se persiste y se renderiza)
 let tareas = [];
 
+const formTarea = document.getElementById('form-tarea');
+const inputTarea = document.getElementById('input-tarea');
+const listaTareas = document.getElementById('lista-tareas');
+const contador = document.getElementById('contador');
 /**
  * Devuelve todas las tareas. Útil para los tests.
  * @returns {Array<{id: string, texto: string, completada: boolean}>}
@@ -34,10 +38,22 @@ export function generarId() {
  *   La tarea creada, o null si el texto es vacío.
  */
 export function agregarTarea(texto) {
+    if (!texto || typeof texto !== 'string' || texto.trim() === '') {
+        return null;
+    }
+
+    const nuevaTarea = {
+        id: Date.now().toString(),
+        texto: texto.trim(),
+        completada: false
+    };
+
+    tareas.push(nuevaTarea);
+    return nuevaTarea;
+}
     // TODO: validar que `texto` no esté vacío (trim), crear el objeto
     // { id, texto, completada: false }, hacer push al array `tareas`
     // y devolverlo. Si el texto es vacío, devolver null.
-}
 
 /**
  * Elimina una tarea por id. Devuelve true si la encontró y eliminó.
@@ -45,9 +61,15 @@ export function agregarTarea(texto) {
  * @returns {boolean}
  */
 export function eliminarTarea(id) {
+    const indice = tareas.findIndex(t => String(t.id) === String(id));
+    if (indice === -1) {
+        return false;
+    }
+    tareas.splice(indice, 1);
+    return true;
+}
     // TODO: filtrar `tareas` para quitar la que tenga ese id.
     // Devuelve true si eliminó al menos una, false si no.
-}
 
 /**
  * Marca/desmarca una tarea como completada. Devuelve true si la encontró.
