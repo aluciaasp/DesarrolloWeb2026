@@ -15,6 +15,7 @@ const formTarea = document.getElementById('form-tarea');
 const inputTarea = document.getElementById('input-tarea');
 const listaTareas = document.getElementById('lista-tareas');
 const contador = document.getElementById('contador');
+const botonesFiltro = document.querySelectorAll('[data-filtro]');
 /**
  * Devuelve todas las tareas. Útil para los tests.
  * @returns {Array<{id: string, texto: string, completada: boolean}>}
@@ -77,8 +78,15 @@ export function eliminarTarea(id) {
  * @returns {boolean}
  */
 export function toggleTarea(id) {
+    const tarea = tareas.find(t => String(t.id) === String(id));
+    if (!tarea) {
+        return false;
+    }
+    tarea.completada = !tarea.completada;
+    return true;
     // TODO: recorrer `tareas` y cambiar `completada` de la que coincida.
     // Devuelve true si la encontró.
+    
 }
 
 /**
@@ -87,6 +95,13 @@ export function toggleTarea(id) {
  * @returns {Array}
  */
 export function filtrarTareas(filtro) {
+    if (filtro === 'pendientes') {
+        return tareas.filter(t => !t.completada);
+    }
+    if (filtro === 'completadas') {
+        return tareas.filter(t => t.completada);
+    }
+    return [...tareas];
     // TODO: implementar la lógica de filtrado.
 }
 
