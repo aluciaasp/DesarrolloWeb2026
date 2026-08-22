@@ -10,12 +10,9 @@ const STORAGE_KEY = "tareas-dw-s4";
 
 // Estado en memoria (lo que se persiste y se renderiza)
 let tareas = [];
+let filtroActual = "todas";
+   
 
-const formTarea = document.getElementById('form-tarea');
-const inputTarea = document.getElementById('input-tarea');
-const listaTareas = document.getElementById('lista-tareas');
-const contador = document.getElementById('contador');
-const botonesFiltro = document.querySelectorAll('[data-filtro]');
 /**
  * Devuelve todas las tareas. Útil para los tests.
  * @returns {Array<{id: string, texto: string, completada: boolean}>}
@@ -44,7 +41,7 @@ export function agregarTarea(texto) {
     }
 
     const nuevaTarea = {
-        id: Date.now().toString(),
+        id: generarId(),
         texto: texto.trim(),
         completada: false
     };
@@ -94,11 +91,12 @@ export function toggleTarea(id) {
  * @param {"todas"|"pendientes"|"completadas"} filtro
  * @returns {Array}
  */
-export function filtrarTareas(filtro) {
-    if (filtro === 'pendientes') {
+export function filtrarTareas(filtro = "todas") {
+    const f = String(filtro).toLowerCase().trim();
+    if (f === 'pendientes' || f === 'pendiente') {
         return tareas.filter(t => !t.completada);
     }
-    if (filtro === 'completadas') {
+    if (f === 'completadas' || f === 'completada') {
         return tareas.filter(t => t.completada);
     }
     return [...tareas];
@@ -109,6 +107,7 @@ export function filtrarTareas(filtro) {
  * Persiste el array `tareas` en localStorage como JSON.
  */
 export function guardar() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
     // TODO: usar localStorage.setItem con la clave STORAGE_KEY.
     // El valor debe ser JSON.stringify(tareas).
 }
@@ -117,6 +116,12 @@ export function guardar() {
  * Carga las tareas desde localStorage. Si no hay nada, deja el array vacío.
  */
 export function cargar() {
+    try {
+        const datos = localStorage.getItem(STORAGE_KEY);
+        tareas = datos ? JSON.parse(datos) : [];
+    } catch (e) {
+        tareas = [];
+    }
     // TODO: leer localStorage con STORAGE_KEY.
     // Si existe, hacer JSON.parse y asignarlo a `tareas`.
     // Si no existe o falla, `tareas` se queda como [].
@@ -180,7 +185,7 @@ export function render(filtro = "todas") {
     }
 }
 
-let filtroActual = "todas";
+
 
 function init() {
     cargar();
