@@ -185,7 +185,64 @@ export async function agregarMensaje(archivoDatos, texto) {
  * @returns {import('node:http').Server}
  */
 export function crearServidor(config = {}) {
-    throw new Error('Not implemented: crearServidor');
+    const { archivoDatos = 'data/mensajes.json', nombreApp = 'mensajes-api', logger } = config;
+
+    const server = http.createServer(async (req, res) => {
+        const { method, url } = req;
+
+        if (logger) {
+            logger.registrar(`${method} ${url}`);
+        }
+
+        try {
+            if (method === 'GET' && url === '/') {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
+                    mensaje: `Bienvenido a ${nombreApp}`,
+                    hora: new Date().toISOString(),
+                    sistema: infoSistema(),
+                }));
+                return;
+            }
+
+            if (method === 'GET' && url === '/mensajes') {
+                const mensajes = await leerMensajes(archivoDatos);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(mensajes));
+                return;
+            }
+
+            if (method === 'POST' && url === '/mensajes') {
+                const body = await leerBody(req);
+                let texto;
+                try {
+                    texto = JSON.parse(body).texto;
+                } catch {
+                    texto = undefined;
+                }
+
+                const nuevo = await agregarMensaje(archivoDatos, texto);
+
+                if (!nuevo) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'El texto es requerido' }));
+                    return;
+                }
+
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(nuevo));
+                return;
+            }
+
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Ruta no encontrada' }));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Error interno del servidor' }));
+        }
+    });
+
+    return server;
 }
 
 /**
@@ -196,6 +253,15 @@ export function crearServidor(config = {}) {
  * @returns {import('node:http').Server}
  */
 export function iniciarServidor(config = {}) {
-    throw new Error('Not implemented: iniciarServidor');
+   const { puerto = 3000, logger } = config;
+    const server = crearServidor(config);
+
+    server.listen(puerto, () => {
+        if (logger) {
+            logger.registrar(`Servidor en http://localhost:${puerto}`);
+        }
+    });
+
+    return server;
 }
 
