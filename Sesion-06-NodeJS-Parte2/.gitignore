@@ -3,3 +3,4 @@ node_modules/
 *.tmp
 data/*.json
 data/filtrado.log
+tests/grader.local.test.js
