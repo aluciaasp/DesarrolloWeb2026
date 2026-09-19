@@ -16,8 +16,8 @@ import { describe, it, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -83,12 +83,11 @@ beforeEach(async () => {
     global.fetch = dom.window.fetch;
     global.Event = dom.window.Event;
 
-    // Ejecutar app.js (cache-busting para re-ejecutarlo en cada test)
-    await import(`${join(publicDir, 'app.js')}?t=${Date.now()}-${Math.random()}`);
+ // Ejecutar app.js (cache-busting para re-ejecutarlo en cada test)
+    await import(`${pathToFileURL(join(publicDir, 'app.js')).href}?t=${Date.now()}-${Math.random()}`);
     dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
     await esperar();
 });
-
 describe('Frontend · carga inicial', () => {
     it('hace GET /alumnos al iniciar', () => {
         const peticion = llamadas.find((l) => l.url.includes('/alumnos'));

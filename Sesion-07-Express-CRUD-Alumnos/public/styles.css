@@ -1,7 +1,6 @@
 /* ============================================================
    styles.css — Plantilla básica
    Tarea Sesión 7 · Desarrollo Web · UMG
-   TODO: mejora estos estilos (puedes cambiar todo el diseño).
    ============================================================ */
 
 :root {
@@ -42,7 +41,7 @@ table {
 }
 
 th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
-th { background: #ede7f6; }
+th { background: #ede7f6; font-weight: 600; }
 tbody tr:hover { background: #f9fafb; }
 
 button {
@@ -51,9 +50,17 @@ button {
     border-radius: 6px;
     padding: 8px 14px;
     font-size: 14px;
+    transition: opacity 0.15s, transform 0.15s;
 }
 
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
+
 #btnNuevo { background: var(--color-primario); color: white; }
+#btnNuevo:hover { background: #6a1b9a; }
+
+td button { margin-right: 6px; background: #e3e3e8; }
+td button:last-child { background: #ffebee; color: var(--color-error); }
 
 dialog {
     border: none;
@@ -67,9 +74,11 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
 
 label { display: block; margin-top: 10px; font-size: 14px; font-weight: 600; }
 input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #cbd5e1; border-radius: 6px; }
+input:focus { outline: none; border-color: var(--color-primario); box-shadow: 0 0 0 2px #ede7f6; }
 
 .acciones { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.acciones button[type="submit"], #btnConfirmarEliminar { background: var(--color-primario); color: white; }
 
-#mensaje { min-height: 20px; font-size: 14px; }
+#mensaje { min-height: 20px; font-size: 14px; font-weight: 500; }
 #mensaje.error { color: var(--color-error); }
 #mensaje.ok { color: var(--color-ok); }

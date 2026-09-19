@@ -15,10 +15,8 @@
     <main>
         <button id="btnNuevo" type="button">➕ Nuevo alumno</button>
 
-        <!-- TODO: muestra aquí los errores o mensajes de éxito -->
         <p id="mensaje" role="status"></p>
 
-        <!-- TODO: la tabla se llena desde app.js con fetch -->
         <table id="tablaAlumnos">
             <thead>
                 <tr>
@@ -30,7 +28,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody><!-- TODO: filas generadas por JavaScript --></tbody>
+            <tbody></tbody>
         </table>
     </main>
 
@@ -39,7 +37,6 @@
         <form id="formAlumno" method="dialog">
             <h2 id="tituloForm">Nuevo alumno</h2>
 
-            <!-- TODO: cada input debe tener name, id, required y su <label> -->
             <label for="nombre">Nombre</label>
             <input id="nombre" name="nombre" type="text" required>
 
@@ -52,7 +49,6 @@
             <label for="edad">Edad</label>
             <input id="edad" name="edad" type="number" min="0">
 
-            <!-- TODO: evita que el formulario cierre el dialog por defecto -->
             <div class="acciones">
                 <button type="button" id="btnCancelar">Cancelar</button>
                 <button type="submit" id="btnGuardar">Guardar</button>
